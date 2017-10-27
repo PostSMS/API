@@ -37,7 +37,6 @@ $ composer require postsms/api
 require 'vendor/autoload.php';
 
 use PostSMS\API\Client\Client;
-use PostSMS\API\Entity\Sender;
 
 $credentials = [
     'email' => 'user@site.by',
