@@ -29,6 +29,7 @@ require 'vendor/autoload.php';
 
 use PostSMS\API\Client\Client;
 
+// Ваши данные для входа в PostSMS:
 $credentials = [
     'email' => 'user@site.by',
     'password' => '12345654321',
