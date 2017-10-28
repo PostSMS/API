@@ -53,7 +53,6 @@ class Client implements ClientInterface
 
     /**
      * Создает новый Client Instance.
-     *
      * @param array $credentials Массив с данными для авторизации (email, password).
      * @param string $url URL для API (with trailing slash).
      * @param bool $sandbox Включен ли режим песочницы.
@@ -81,7 +80,6 @@ class Client implements ClientInterface
 
     /**
      * Выполняет запрос к API.
-     *
      * @param string $method HTTP метод.
      * @param string $uri URI для API метода.
      * @param array $headers HTTP заголовки.
@@ -91,11 +89,11 @@ class Client implements ClientInterface
      */
     public function makeRequest(string $method, string $uri, array $headers = [], array $params = [])
     {
-        $url = $this->url.$uri;
+        $url = $this->getUrl() . $uri;
 
         // Добавим версию API и формат запроса/ответа
         $defaultHeaders = [
-            'Accept' => 'application/vnd.postsms'.$this->region.'.'.$this->version.'+json',
+            'Accept' => 'application/vnd.postsms'.$this->getRegion() . '.' . $this->getVersion() . '+json',
         ];
 
         // Объеденим заголовки с заголовками по-умолчанию
@@ -105,7 +103,7 @@ class Client implements ClientInterface
         );
 
         // Basic auth
-        Request::auth($this->credentials['email'], $this->credentials['password']);
+        Request::auth($this->getCredentials()['email'], $this->getCredentials()['password']);
 
         switch ($method) {
             case 'GET':
@@ -115,11 +113,68 @@ class Client implements ClientInterface
                 $response = Request::post($url, $headers, $params);
                 break;
             default:
-                throw new \Exception('Method is not supported.');
+                throw new \Exception('Метод не поддерживается.');
                 break;
         }
 
         return $response;
+    }
+
+    /**
+     * Получить данные для входа.
+     * @return array
+     */
+    public function getCredentials(): array
+    {
+        return $this->credentials;
+    }
+
+    /**
+     * Установить данные для входа.
+     * @param array $credentials
+     * @return void
+     */
+    public function setCredentials(array $credentials)
+    {
+        $this->credentials = $credentials;
+    }
+
+    /**
+     * Получить URL для API.
+     * @return string
+     */
+    public function getUrl(): string
+    {
+        return $this->url;
+    }
+
+    /**
+     * Установить URL для API.
+     * @param string $url URL для API
+     * @return void
+     */
+    public function setUrl(string $url)
+    {
+        $this->url = $url;
+    }
+
+    /**
+     * Получить версию API.
+     * @return string
+     */
+    public function getVersion(): string
+    {
+        return $this->version;
+    }
+
+    /**
+     * Установить версию API.
+     * @param string $version Версия API ('v1')
+     * @return void
+     */
+    public function setVersion(string $version)
+    {
+        $this->version = $version;
     }
 
     /**
@@ -129,5 +184,15 @@ class Client implements ClientInterface
     public function getRegion(): string
     {
         return $this->region;
+    }
+
+    /**
+     * Установить регион.
+     * @param string $region Код региона ('by')
+     * @return void
+     */
+    public function setRegion(string $region)
+    {
+        $this->region = $region;
     }
 }
