@@ -9,7 +9,7 @@ class Recipient extends BaseEntity
      * @param string $phoneNumber Номер телефона.
      * @return array
      */
-    public function one(string $phoneNumber): array
+    public function getOneByPhoneNumber(string $phoneNumber): array
     {
         $response = $this->client->makeRequest('GET', 'recipients/'.$phoneNumber);
 
@@ -20,7 +20,7 @@ class Recipient extends BaseEntity
      * Получить список всех получателей.
      * @return array
      */
-    public function all(): array
+    public function getAll(): array
     {
         $response = $this->client->makeRequest('GET', 'recipients');
 

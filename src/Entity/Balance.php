@@ -8,7 +8,7 @@ class Balance extends BaseEntity
      * Получает историю баланса.
      * @return array
      */
-    public function history(): array
+    public function getHistory(): array
     {
         $response = $this->client->makeRequest('GET', 'balances');
 

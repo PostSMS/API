@@ -19,7 +19,7 @@ class Tracking extends BaseEntity
      * @return array
      * @throws BadArgumentException
      */
-    public function one(string $number): array
+    public function getOneByTrackingNumber(string $number): array
     {
         if ((new Validator($this->client->getRegion()))->isValidTrackingNumber($number)) {
             $response = $this->client->makeRequest('GET', 'trackings/'.$number);
@@ -34,7 +34,7 @@ class Tracking extends BaseEntity
      * Получает список всех посылок.
      * @return array
      */
-    public function all(): array
+    public function getAll(): array
     {
         $response = $this->client->makeRequest('GET', 'trackings');
 

@@ -8,7 +8,7 @@ class User extends BaseEntity
      * Получает информацию о текущем пользователе.
      * @return mixed
      */
-    public function info()
+    public function getInfo()
     {
         $response = $this->client->makeRequest('GET', 'user');
 

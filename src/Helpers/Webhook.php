@@ -34,16 +34,16 @@ class Webhook
 
     /**
      * Проверяе запрос на валидность и выполняет переданное замыкание.
-     * @param Closure $action
+     * @param Closure $action Замыкание для выполнение callback.
      * @return mixed
      * @throws BadHeaderException
      */
-    public function callback(Closure $action)
+    public function setCallback(Closure $action)
     {
         $incomingSecretKey = $this->request->headers->get(self::SECRET_HEADER_KEY);
 
         if ($incomingSecretKey !== $this->secretKey) {
-            throw new BadHeaderException('Invalid incoming secret key');
+            throw new BadHeaderException('Передан неправильный секретный ключ.');
         }
 
         return $action(json_decode($this->request->getContent(), true));

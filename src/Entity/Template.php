@@ -9,7 +9,7 @@ class Template extends BaseEntity
      * @param int $id ID шаблона
      * @return array
      */
-    public function one(int $id): array
+    public function getOneByID(int $id): array
     {
         $response = $this->client->makeRequest('GET', 'templates/'.$id);
 
@@ -20,7 +20,7 @@ class Template extends BaseEntity
      * Получает список шаблонов.
      * @return array
      */
-    public function all(): array
+    public function getAll(): array
     {
         $response = $this->client->makeRequest('GET', 'templates');
 

@@ -8,7 +8,7 @@ class Sender extends BaseEntity
      * Получает список доступных имен отправителей для СМС.
      * @return array
      */
-    public function all(): array
+    public function getAll(): array
     {
         $response = $this->client->makeRequest('GET', 'senders');
 
