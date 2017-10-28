@@ -14,9 +14,8 @@ class Tracking extends BaseEntity
     ];
 
     /**
-     * Get one tracking.
-     *
-     * @param string $number
+     * Получает информацию о посылке по номеру трека.
+     * @param string $number Номер трека
      * @return array
      * @throws BadArgumentException
      */
@@ -27,13 +26,12 @@ class Tracking extends BaseEntity
 
             return $response->body;
         } else {
-            throw new BadArgumentException('Tracking '.$number.' number is invalid.');
+            throw new BadArgumentException('Трек-номер '.$number.' неверный.');
         }
     }
 
     /**
-     * Get all trackings.
-     *
+     * Получает список всех посылок.
      * @return array
      */
     public function all(): array
@@ -44,9 +42,8 @@ class Tracking extends BaseEntity
     }
 
     /**
-     * Create a lot of trackings.
-     *
-     * @param array $trackings
+     * Создает несколько посылок.
+     * @param array $trackings Массив с посылками.
      * @return mixed
      * @throws BadArgumentException
      */
@@ -56,25 +53,25 @@ class Tracking extends BaseEntity
 
         foreach ($trackings as $tracking) {
             if (!isset($tracking['number'])) {
-                throw new BadArgumentException('Tracking number is required.');
+                throw new BadArgumentException('Не добавлен трек-номер.');
             }
 
             if (!$validator->isValidTrackingNumber($tracking['number'])) {
-                throw new BadArgumentException('Tracking '.$tracking['number'].' number is invalid.');
+                throw new BadArgumentException('Трек-номер '.$tracking['number'].' неверный.');
             }
 
             if (isset($tracking['recipient']) && !$validator->isValidPhoneNumber($tracking['recipient']['phone'])) {
                 $recipientPhone = $tracking['recipient']['phone'];
                 $recipientFullName = $tracking['recipient']['fullName'];
 
-                $message = 'Phone number ' . $recipientPhone;
-                $message .= ' for recipient ' . $recipientFullName . ' is invalid';
+                $message = 'Номер телефона ' . $recipientPhone;
+                $message .= ' для получаетеля ' . $recipientFullName . ' неверный.';
 
                 throw new BadArgumentException($message);
             }
 
             if (isset($tracking['recipient']) && !isset($tracking['recipient_id'])) {
-                throw new BadArgumentException('You must provide recipient array or recipient_id.');
+                throw new BadArgumentException('Вы должны предоставить массив с получаетелем "recipient" или "recipient_id".');
             }
         }
 

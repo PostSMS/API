@@ -5,8 +5,8 @@ namespace PostSMS\API\Entity;
 class Blacklist extends BaseEntity
 {
     /**
-     * Check recipient if exists in blacklist.
-     * @param array $data ['name' => 'Name', 'phone' => '375297891243']
+     * Проверяет пользователя на наличие в черном списке.
+     * @param array $data ['name' => 'Имя', 'phone' => '375297891243']
      * @return array
      */
     public function check(array $data): array

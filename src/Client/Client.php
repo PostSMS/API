@@ -8,57 +8,57 @@ use Unirest\Response;
 class Client implements ClientInterface
 {
     /**
-     * Array with credentials (email, password).
+     * Массив с данными для авторизации (email, password).
      * @var array
      */
     protected $credentials;
 
     /**
-     * URL for production API.
+     * URL для боевого API.
      * @var string
      */
     protected $url;
 
     /**
-     * Version of API.
+     * Версия API.
      * @var string
      */
     protected $version;
 
     /**
-     * Region
+     * Регион.
      * @var string
      */
     protected $region;
 
     /**
-     * URL for API in sandbox mode.
+     * URL для API в режиме песочницы (по-умолчанию).
      */
     const SANDBOX_API_URL = 'https://sandbox.postsms.by/api/';
 
     /**
-     * URL for API in production mode.
+     * URL для API в боевой среде (по-умолчанию).
      */
     const DEFAULT_API_URL = 'https://postsms.by/api/';
 
     /**
-     * Version of API.
+     * Версия API (по-умолчанию).
      */
     const DEFAULT_VERSION = 'v1';
 
     /**
-     * Region of API.
+     * Регион для API (по-умолчанию).
      */
     const DEFAULT_REGION = 'by';
 
     /**
-     * Create a new Client Instance.
+     * Создает новый Client Instance.
      *
-     * @param array $credentials Array with credentials (email, password).
-     * @param string $url URL for API (with trailing slash).
-     * @param bool $sandbox Sandbox mode.
-     * @param string $version Version of API.
-     * @param string $region Region of API.
+     * @param array $credentials Массив с данными для авторизации (email, password).
+     * @param string $url URL для API (with trailing slash).
+     * @param bool $sandbox Включен ли режим песочницы.
+     * @param string $version Версия API.
+     * @param string $region Регион API.
      */
     public function __construct(
         array $credentials,
@@ -80,12 +80,12 @@ class Client implements ClientInterface
     }
 
     /**
-     * Make request to API.
+     * Выполняет запрос к API.
      *
-     * @param string $method HTTP method.
-     * @param string $uri URI for API method.
-     * @param array $headers HTTP headers.
-     * @param array $params Query params.
+     * @param string $method HTTP метод.
+     * @param string $uri URI для API метода.
+     * @param array $headers HTTP заголовки.
+     * @param array $params Параметры запроса.
      * @return Response
      * @throws \Exception
      */
@@ -93,12 +93,12 @@ class Client implements ClientInterface
     {
         $url = $this->url.$uri;
 
-        // Add API version and format
+        // Добавим версию API и формат запроса/ответа
         $defaultHeaders = [
             'Accept' => 'application/vnd.postsms'.$this->region.'.'.$this->version.'+json',
         ];
 
-        // Merge headers with default
+        // Объеденим заголовки с заголовками по-умолчанию
         $headers = array_merge(
             $defaultHeaders,
             $headers
@@ -123,7 +123,7 @@ class Client implements ClientInterface
     }
 
     /**
-     * Get region.
+     * Получить регион.
      * @return string
      */
     public function getRegion(): string

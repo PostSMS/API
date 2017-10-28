@@ -7,19 +7,19 @@ use Unirest\Response;
 interface ClientInterface
 {
     /**
-     * Make request to API.
+     * Выполняет запрос к API.
      *
-     * @param string $method HTTP method.
-     * @param string $uri URI for API method.
-     * @param array $headers HTTP headers.
-     * @param array $params Query params.
+     * @param string $method HTTP метод.
+     * @param string $uri URI для API метода.
+     * @param array $headers HTTP заголовки.
+     * @param array $params Параметры запроса.
      * @return Response
      * @throws \Exception
      */
     public function makeRequest(string $method, string $uri, array $headers = [], array $params = []);
 
     /**
-     * Get region.
+     * Получить регион.
      * @return string
      */
     public function getRegion(): string;

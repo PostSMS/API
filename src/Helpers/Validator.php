@@ -15,7 +15,7 @@ class Validator
     }
 
     /**
-     * Check if is valid phone number.
+     * Проверяет номер телефона на корректность.
      * @param int $phoneNumber Phone number
      * @return bool Boolean result
      */
@@ -34,9 +34,9 @@ class Validator
     }
 
     /**
-     * Check if is valid tracking number
-     * @param string $trackingNumber Tracking number
-     * @param string $trackingType Tracking type (now only BELPOST available)
+     * Проверяет трек-номер на корректность.
+     * @param string $trackingNumber Номер трека
+     * @param string $trackingType Тип трека (по-умолчанию пока доступна Белпочта)
      * @return bool
      */
     public function isValidTrackingNumber(
@@ -44,7 +44,7 @@ class Validator
         string $trackingType = Tracking::TRACKING_TYPE_BELPOST
     ): bool {
         if (!in_array($trackingType, Tracking::AVAILABLE_TRACKING_TYPES)) {
-            throw new \InvalidArgumentException('You must provide correct tracking type');
+            throw new \InvalidArgumentException('Вы не передали тип трека.');
         }
 
         switch ($trackingType) {

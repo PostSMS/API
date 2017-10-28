@@ -5,9 +5,8 @@ namespace PostSMS\API\Entity;
 class Recipient extends BaseEntity
 {
     /**
-     * Get one recipient.
-     *
-     * @param string $phoneNumber
+     * Получить данные о получателе по номеру телефона.
+     * @param string $phoneNumber Номер телефона.
      * @return array
      */
     public function one(string $phoneNumber): array
@@ -18,8 +17,7 @@ class Recipient extends BaseEntity
     }
 
     /**
-     * Get all recipients.
-     *
+     * Получить список всех получателей.
      * @return array
      */
     public function all(): array
@@ -30,9 +28,8 @@ class Recipient extends BaseEntity
     }
 
     /**
-     * Create a lot of recipients.
-     *
-     * @param array $recipients
+     * Создать несколько получателей.
+     * @param array $recipients Массив с получателями
      * @return mixed
      */
     public function create(array $recipients)
@@ -45,9 +42,8 @@ class Recipient extends BaseEntity
     }
 
     /**
-     * Update a lot of recipients.
-     *
-     * @param array $recipients
+     * Обновить несколько получаетелей.
+     * @param array $recipients Массив с получателями
      * @return mixed
      */
     public function update(array $recipients)

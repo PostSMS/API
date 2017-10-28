@@ -11,19 +11,19 @@ class Webhook
     const SECRET_HEADER_KEY = 'X-Secret-Key';
 
     /**
-     * Secret key for receiving right webhooks.
+     * Секретный ключ для получения правильных вебхуков.
      * @var
      */
     protected $secretKey;
 
     /**
-     * Incoming request.
+     * Входящий запрос.
      * @var
      */
     protected $request;
 
     /**
-     * Webhook constructor.
+     * Webhook конструктор.
      * @param string $secretKey
      */
     public function __construct(string $secretKey)
@@ -33,7 +33,7 @@ class Webhook
     }
 
     /**
-     * Check if is valid request and execute closure.
+     * Проверяе запрос на валидность и выполняет переданное замыкание.
      * @param Closure $action
      * @return mixed
      * @throws BadHeaderException

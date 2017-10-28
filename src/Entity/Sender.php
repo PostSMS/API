@@ -5,8 +5,7 @@ namespace PostSMS\API\Entity;
 class Sender extends BaseEntity
 {
     /**
-     * Get all available senders.
-     *
+     * Получает список доступных имен отправителей для СМС.
      * @return array
      */
     public function all(): array

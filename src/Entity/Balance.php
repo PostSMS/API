@@ -5,8 +5,7 @@ namespace PostSMS\API\Entity;
 class Balance extends BaseEntity
 {
     /**
-     * Get balance history.
-     *
+     * Получает историю баланса.
      * @return array
      */
     public function history(): array

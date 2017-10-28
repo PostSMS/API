@@ -1,4 +1,4 @@
-# api
+# PostSMS API SDK для PHP
 
 [![Latest Version on Packagist][ico-version]][link-packagist]
 [![Software License][ico-license]](LICENSE.md)
@@ -7,33 +7,24 @@
 [![Quality Score][ico-code-quality]][link-code-quality]
 [![Total Downloads][ico-downloads]][link-downloads]
 
-This is where your description should go. Try and limit it to a paragraph or two, and maybe throw in a mention of what
-PSRs you support to avoid any confusion with users and contributors.
+Это SDK для сервиса отслеживания посылок PostSMS.by
 
-## Structure
-
-If any of the following are applicable to your project, then the directory structure should follow industry best practises by being named the following.
-
-```
-bin/        
-config/
-src/
-tests/
-vendor/
-```
+Чуть позже будет ссылка на сайт с документацией по API.
 
 
-## Install
+## Установка
 
-Via Composer
+Через composer
 
 ``` bash
 $ composer require postsms/api
 ```
 
-## Usage
+## Использование
 
 ``` php
+<?php
+
 require 'vendor/autoload.php';
 
 use PostSMS\API\Client\Client;
@@ -43,34 +34,50 @@ $credentials = [
     'password' => '12345654321',
 ];
 
+// Для «боевого» режима
+$url = 'http://postsms.by/api/';
+
+// Для режима «песочницы»
 $url = 'http://sandbox.postsms.by/api/';
 
 $client = new Client($credentials, $url);
 ```
 
-## Change log
+Далее, можно выполнять запросы к API. Например:
 
-Please see [CHANGELOG](CHANGELOG.md) for more information on what has changed recently.
 
-## Testing
+``` php
+...
+use PostSMS\API\Entity\Sender;
+
+// Получим список имен отправителей для СМС
+$senders = (new Sender($client))->all();
+
+```
+
+## История изменений
+
+Пожалуйста, смотрите [CHANGELOG](CHANGELOG.md) для более детальной информации по изменениям в SDK.
+
+## Тестирование (TODO)
 
 ``` bash
 $ composer test
 ```
 
-## Contributing
+## Участие в разработке и предложения по улучшению SDK
 
-Please see [CONTRIBUTING](CONTRIBUTING.md) and [CODE_OF_CONDUCT](CODE_OF_CONDUCT.md) for details.
+Пожалуйста, смотрите [CONTRIBUTING](CONTRIBUTING.md) и [CODE_OF_CONDUCT](CODE_OF_CONDUCT.md) для подробностей.
 
-## Security
+## Безопасность.
 
-If you discover any security related issues, please email info@postsms.by instead of using the issue tracker.
+Если у вас есть какие-то замечания по безопасности, пожалуйста пишите на info@postsms.by вместо того, чтобы создавать заявку.
 
-## Credits
+## Участники
 
 - [Siarhei Bautrukevich][link-author]
 
-## License
+## Лицензия
 
 The MIT License (MIT). Please see [License File](LICENSE.md) for more information.
 

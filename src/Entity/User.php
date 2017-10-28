@@ -5,8 +5,7 @@ namespace PostSMS\API\Entity;
 class User extends BaseEntity
 {
     /**
-     * Get user info.
-     *
+     * Получает информацию о текущем пользователе.
      * @return mixed
      */
     public function info()
@@ -17,8 +16,7 @@ class User extends BaseEntity
     }
 
     /**
-     * Update user settings.
-     *
+     * Обновляет пользовательские настройки.
      * @param array $user
      * @return mixed
      */

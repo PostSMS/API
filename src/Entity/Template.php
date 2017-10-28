@@ -5,9 +5,8 @@ namespace PostSMS\API\Entity;
 class Template extends BaseEntity
 {
     /**
-     * Get one template.
-     *
-     * @param int $id
+     * Получает шаблон по ID.
+     * @param int $id ID шаблона
      * @return array
      */
     public function one(int $id): array
@@ -18,8 +17,7 @@ class Template extends BaseEntity
     }
 
     /**
-     * Get all templates.
-     *
+     * Получает список шаблонов.
      * @return array
      */
     public function all(): array
@@ -30,29 +28,28 @@ class Template extends BaseEntity
     }
 
     /**
-     * Create a lot of templates.
-     *
-     * @param array $templates
+     * Создает шаблон.
+     * @param array $template Массив с данными шаблона
      * @return mixed
      */
-    public function create(array $templates)
+    public function create(array $template)
     {
         $response = $this->client->makeRequest('POST', 'templates', [], [
-            'templates' => $templates,
+            'template' => $template,
         ]);
 
         return $response->body;
     }
 
     /**
-     * Update template. Matched by ID.
-     *
-     * @param array $template
+     * Обновляет шаблон по ID.
+     * @param int $id ID шаблона.
+     * @param array $template Массив с данными шаблона.
      * @return mixed
      */
-    public function update(array $template)
+    public function update(int $id, array $template)
     {
-        $response = $this->client->makeRequest('POST', 'templates/update', [], [
+        $response = $this->client->makeRequest('POST', 'templates/update/' . $id, [], [
             'template' => $template,
         ]);
 

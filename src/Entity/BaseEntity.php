@@ -7,13 +7,13 @@ use PostSMS\API\Client\ClientInterface;
 class BaseEntity
 {
     /**
-     * Http client.
+     * Http клиент.
      * @var ClientInterface
      */
     protected $client;
 
     /**
-     * BaseEntity constructor.
+     * BaseEntity конструктор.
      * @param ClientInterface $client
      */
     public function __construct(ClientInterface $client)

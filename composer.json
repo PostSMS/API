@@ -1,7 +1,7 @@
 {
     "name": "postsms/api",
     "type": "library",
-    "description": "PostSMS API Client for PHP",
+    "description": "PostSMS API SDK для PHP",
     "keywords": [
         "postsms",
         "api"
