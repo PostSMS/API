@@ -52,7 +52,7 @@ $client = new Client($credentials, $url);
 use PostSMS\API\Entity\Sender;
 
 // Получим список имен отправителей для СМС
-$senders = (new Sender($client))->all();
+$senders = (new Sender($client))->getAll();
 
 ```
 
